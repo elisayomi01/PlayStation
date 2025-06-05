@@ -508,86 +508,21 @@
       </div>
     </div>
   </section>
- </section>
 
   <section id="kontak">
     <h2>Kontak</h2>
     <p>📍 Jl.Raya Abepura, Abepura</p>
     <p>📞 0812-3456-1006</p>
-    <form id="contact-form">
+<form id="contact-form">
       <input type="text" placeholder="Nama" required />
       <input type="text" placeholder="Nomor Telepon" required />
       <textarea placeholder="Pesan" required></textarea>
       <button type="submit">Kirim</button>
     </form>
     <div id="thank-you-message" style="display: none; margin-top: 20px; color: #4a148c; font-weight: bold;">
-      Terima kasih Pesanan Anda Berhasil .
+      Terima kasih untuk pesanan Anda! Kami akan menghubungi Anda segera.
     </div>
   </section>
 
-  <footer>
-    <p>&copy; 2025 Rental StickPlay</p>
-  </footer>
 
-  <script>
-    // Carousel
-    const images = document.querySelectorAll('.carousel img');
-    let currentIndex = 0;
-
-    function showImage(index) {
-      images.forEach((img, i) => {
-        img.style.display = i === index ? 'block' : 'none';
-      });
-    }
-
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % images.length;
-      showImage(currentIndex);
-    }
-
-    showImage(currentIndex);
-    setInterval(nextImage, 3000);
-
-    // Contact form submission
-    const contactForm = document.getElementById('contact-form');
-    const thankYouMessage = document.getElementById('thank-you-message');
-
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      contactForm.reset();
-      thankYouMessage.style.display = 'block';
-      setTimeout(() => {
-        thankYouMessage.style.display = 'none';
-      }, 5000);
-    });
-
-    // Game list filtering
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const gameCards = document.querySelectorAll('.game-card');
-
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.getAttribute('data-filter');
-        gameCards.forEach(card => {
-          if(filter === 'all' || card.classList.contains(filter)) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-  </script>
-</body>
-</html>
-
- 
-
-  
-
-  
-
-
-
+    <form id
