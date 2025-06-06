@@ -402,7 +402,7 @@
     }
   </style>
 </head>
-
+  
 <body>
   
   <header>
@@ -513,7 +513,8 @@
     <h2>Kontak</h2>
     <p>📍 Jl.Raya Abepura, Abepura</p>
     <p>📞 0812-3456-1006</p>
-<form id="contact-form">
+
+    <form id="contact-form">
       <input type="text" placeholder="Nama" required />
       <input type="text" placeholder="Nomor Telepon" required />
       <textarea placeholder="Pesan" required></textarea>
@@ -524,5 +525,82 @@
     </div>
   </section>
 
+  <footer>
+
+  <section id="admin-login" style="display:none;">
+    <h2>Login Admin</h2>
+    <form id="admin-login-form">
+      <input type="text" id="admin-username" placeholder="Username" required />
+      <input type="password" id="admin-password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <div id="admin-message"></div>
+  </section>
+
+  <section id="laporan">
+    <h2>Laporan Pemesanan</h2>
+    <div id="order-report"></div>
+  </section>
+
+  <script>
+    document.getElementById("admin-login-link").addEventListener("click", () => {
+      document.getElementById("admin-login").style.display = "block";
+    });
+
+    const correctUsername = "admin";
+    const correctPassword = "12345";
+
+    document.getElementById("admin-login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("admin-username").value;
+      const password = document.getElementById("admin-password").value;
+      const message = document.getElementById("admin-message");
+
+      if (username === correctUsername && password === correctPassword) {
+        message.textContent = "Login berhasil!";
+        message.style.color = "lightgreen";
+        tampilkanLaporan();
+      } else {
+        message.textContent = "Username atau password salah!";
+        message.style.color = "red";
+      }
+    });
+
+    const contactForm = document.getElementById("contact-form");
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const inputs = contactForm.querySelectorAll("input, textarea");
+      const nama = inputs[0].value;
+      const hp = inputs[1].value;
+      const pesan = inputs[2].value;
+      const jam = prompt("Masukkan jumlah jam main:");
+
+      const data = JSON.parse(localStorage.getItem("orders")) || [];
+      data.push({ nama, hp, pesan, jam });
+      localStorage.setItem("orders", JSON.stringify(data));
+
+      contactForm.reset();
+      document.getElementById("thank-you-message").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("thank-you-message").style.display = "none";
+      }, 5000);
+    });
+
+    function tampilkanLaporan() {
+      const laporan = document.getElementById("laporan");
+      const output = document.getElementById("order-report");
+      laporan.style.display = "block";
+
+      const data = JSON.parse(localStorage.getItem("orders")) || [];
+      output.innerHTML = "";
+      data.forEach((order, i) => {
+        output.innerHTML += `
+          <p><strong>${i + 1}.</strong> Nama: ${order.nama}, HP: ${order.hp}, Jam: ${order.jam}, Pesan: ${order.pesan}</p>
+        `;
+      });
+    }
+  </script>
+</body>
+</html>
 
     <form id
